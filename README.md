@@ -15,13 +15,7 @@ A high-performance, thread-safe SQLite-based caching system for Python that stor
 Using `uv` (recommended):
 
 ```bash
-uv pip install cachedb
-```
-
-Or with pip:
-
-```bash
-pip install cachedb
+uv install --editable 'path/to/cloned/repo/root'
 ```
 
 ## Quick Start
@@ -37,44 +31,6 @@ db.set("user:1", {"name": "Alice", "age": 30})
 
 # Retrieve the object
 user = db.get("user:1")
-```
-
-## Usage
-
-### Using the Decorator
-
-```python
-from cachedb import cached
-
-@cached("function_cache.db")
-def expensive_operation(x, y):
-    # Your expensive computation here
-    return x * y
-
-# First call - computes and caches
-result1 = expensive_operation(10, 20)
-
-# Subsequent calls with same arguments use cache
-result2 = expensive_operation(10, 20)  # Returns cached result
-```
-
-### Advanced Usage
-
-```python
-# With custom cache configuration
-db = CacheDB(
-    "advanced_cache.db",
-    temporary=True,  # Delete on program exit
-    defaultObjectType="my_objects"
-)
-
-# Store with expiration
-db.set("temporary_data", "This will expire", ttl=3600)  # Expires in 1 hour
-
-# Batch operations
-with db.batch() as batch:
-    for i in range(100):
-        batch.set(f"item_{i}", {"data": i * 2})
 ```
 
 ## Development
