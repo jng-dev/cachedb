@@ -1,0 +1,47 @@
+[project]
+name = "cachedb"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = ["fastapi>=0.116.1", "pyyaml>=6.0.2"]
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.uv.sources]
+cachedb = { workspace = true }
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[dependency-groups]
+dev = [
+    "httpx>=0.28.1",
+    "cachedb",
+    "pytest>=8.4.1",
+    "pytest-asyncio>=1.1.0",
+    "pytest-cov>=6.2.1",
+]
+
+# append to your existing pyproject.toml
+[tool.pytest.ini_options]
+testpaths = ["test"]
+addopts = "-q --cov=cachedb.cachedb --cov-branch --cov-report=term-missing --cov-report=xml"
+xfail_strict = true
+
+[tool.coverage.run]
+branch = true
+source = ["cachedb/cachedb"]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true
+fail_under = 85
+
+[tool.setuptools.package-data]
+cachedb = ["py.typed"]
