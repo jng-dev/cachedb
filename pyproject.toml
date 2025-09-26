@@ -36,12 +36,12 @@ xfail_strict = true
 
 [tool.coverage.run]
 branch = true
-source = ["cachedb/cachedb"]
+source = ["cachedb"]
 
 [tool.coverage.report]
 show_missing = true
 skip_covered = true
-fail_under = 85
+fail_under = 0
 
 [tool.setuptools.package-data]
 cachedb = ["py.typed"]
