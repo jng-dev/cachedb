@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pytest
 
-from cachedb.cachedb import CacheDB
+from cachedb import CacheDB
 
 
 @pytest.fixture
@@ -51,7 +51,7 @@ def freeze_time(monkeypatch):
     def set_time(t: int):
         timeslot["now"] = int(t)
         # Patch the symbol imported in core.py
-        import cachedb.cachedb.core as core_mod
+        import cachedb.core as core_mod
 
         monkeypatch.setattr(
             core_mod.utils, "utcNow", lambda: timeslot["now"], raising=True
